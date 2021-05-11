@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">c#hess</h1>
+            <p class="lead text-muted">welcome to the best minimal chess game ever. made by KIBI &copy;</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <a asp-controller="Games" asp-action="Index">
+                        <div class="card bg-dark text-dark stretched-link">
+                            <img class="card-img" src="~/img/minimal1.jpg" alt="Card image">
+                            <div class="card-img-overlay">
+                                <h4 class="card-title">play now</h4>
+                                <p class="card-text">click here to play a friendly game of chess</p>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a asp-controller="Home" asp-action="Privacy">
+                        <div class="card bg-dark text-dark stretched-link">
+                            <img class="card-img" src="~/img/minimal2.jpg" alt="Card image">
+                            <div class="card-img-overlay">
+                                <h4 class="card-title">about the creator</h4>
+                                <p class="card-text">wanna find out more?</p>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </section>
+</main>
