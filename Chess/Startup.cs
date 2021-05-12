@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Chess.Hubs;
 
 namespace Chess
 {
@@ -38,6 +39,7 @@ namespace Chess
 
             services.AddDbContext<ChessContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ChessContext")));
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +70,7 @@ namespace Chess
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
