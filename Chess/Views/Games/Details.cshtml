@@ -4,45 +4,54 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.player1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.player1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.player2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.player2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.winner)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.winner)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.loser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.loser)
-        </dd>
-    </dl>
+    <h4>Game: @Html.DisplayFor(model => model.Title) </h4>
+    <div id="myBoard" style="width: 400px"></div>
+    <button id="startPositionBtn">Start Position</button>
 </div>
+
+
+@section scripts {
+    
+    <script>
+
+        // NOTE: this example uses the chess.js library:
+        
+
+        // NOTE: this example uses the chess.js library:
+        // https://github.com/jhlywa/chess.js
+
+        var board = null
+        var game = new Chess()
+
+        function makeRandomMove() {
+            var possibleMoves = game.moves()
+
+            // exit if the game is over
+            if (game.game_over()) return
+
+            var randomIdx = Math.floor(Math.random() * possibleMoves.length)
+            game.move(possibleMoves[randomIdx])
+            board.position(game.fen())
+
+            window.setTimeout(makeRandomMove, 500)
+        }
+
+        board = Chessboard('myBoard', 'start')
+
+        window.setTimeout(makeRandomMove, 500)
+
+    </script>
+
+    
+}
+
+
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
